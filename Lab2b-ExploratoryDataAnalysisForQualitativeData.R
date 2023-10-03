@@ -288,7 +288,7 @@ kable_theme <- function(dat, caption) {
 
 # STEP 3. Load the Dataset ----
 student_performance_dataset <-
-  read_csv("data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV",
+  read_csv("markdown/perfomance-dataset.csv",
            col_types =
              cols(
                class_group = col_factor(levels = c("A", "B", "C")),
