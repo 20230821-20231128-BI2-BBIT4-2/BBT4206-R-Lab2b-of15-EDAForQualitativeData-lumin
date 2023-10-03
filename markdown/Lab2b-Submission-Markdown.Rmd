@@ -1,0 +1,602 @@
+---
+title: "Business Intelligence Lab Submission Markdown"
+author: "<Specify your group name here>"
+date: "<Specify the date when you submitted the lab>"
+output:
+  github_document: 
+    toc: yes
+    toc_depth: 4
+    fig_width: 6
+    fig_height: 4
+    df_print: default
+editor_options:
+  chunk_output_type: console
+always_allow_html: true
+---
+
+# Student Details
+
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Student ID Numbers and Names of Group Members** | *\<list one student name, group, and ID per line; you should be between 2 and 5 members per group\>* |
+|                                                   |                                                                                                      |
+|                                                   | 1.  123324 - B - Kelly Noella Sota                                                                   |
+|                                                   |                                                                                                      |
+|                                                   | 2.  Kenneth Kimathi                                                                                  |
+|                                                   |                                                                                                      |
+|                                                   | 3.  ID - Group - Name                                                                                |
+|                                                   |                                                                                                      |
+|                                                   | 4.  ID - Group - Name                                                                                |
+|                                                   |                                                                                                      |
+|                                                   | 5.  ID - Group - Name                                                                                |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **GitHub Classroom Group Name**                   |                                                                                                      |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Course Code**                                   | BBT4206                                                                                              |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Course Name**                                   | Business Intelligence II                                                                             |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Program**                                       | Bachelor of Business Information Technology                                                          |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023                                                           |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+
+# Setup Chunk
+
+**Note:** the following "*KnitR*" options have been set as the defaults:\
+`knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
+
+More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
+
+```{r setup, include=FALSE}
+library(formatR)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
+                      collapse = FALSE, tidy = TRUE)
+```
+
+**Note:** the following "*R Markdown*" options have been set as the defaults:
+
+> output:\
+> \
+> github_document:\
+> toc: yes\
+> toc_depth: 4\
+> fig_width: 6\
+> fig_height: 4\
+> df_print: default\
+> \
+> editor_options:\
+> chunk_output_type: console
+
+These snippets are designed to generate visualizations for course evaluation data, specifically focusing on evaluation likes, wishes, and other related aspects(gender, class group).
+
+```{r First Code Chunck}
+## dplyr - For data manipulation ----
+if (!is.element("dplyr", installed.packages()[, 1])) {
+  install.packages("dplyr", dependencies = TRUE)
+}
+require("dplyr")
+
+## ggplot2 - For data visualizations using the Grammar for Graphics package ----
+if (!is.element("ggplot2", installed.packages()[, 1])) {
+  install.packages("ggplot2", dependencies = TRUE)
+}
+require("ggplot2")
+
+## ggrepel - Additional options for the Grammar for Graphics package ----
+if (!is.element("ggrepel", installed.packages()[, 1])) {
+  install.packages("ggrepel", dependencies = TRUE)
+}
+require("ggrepel")
+
+## ggraph - Additional options for the Grammar for Graphics package ----
+if (!is.element("ggraph", installed.packages()[, 1])) {
+  install.packages("ggraph", dependencies = TRUE)
+}
+require("ggraph")
+
+## tidytext - For text mining ----
+if (!is.element("tidytext", installed.packages()[, 1])) {
+  install.packages("tidytext", dependencies = TRUE)
+}
+require("tidytext")
+
+## tidyr - To tidy messy data ----
+if (!is.element("tidyr", installed.packages()[, 1])) {
+  install.packages("tidyr", dependencies = TRUE)
+}
+require("tidyr")
+
+## widyr - To widen, process, and re-tidy a dataset ----
+if (!is.element("widyr", installed.packages()[, 1])) {
+  install.packages("widyr", dependencies = TRUE)
+}
+require("widyr")
+
+## gridExtra - to arrange multiple grid-based plots on a page ----
+if (!is.element("gridExtra", installed.packages()[, 1])) {
+  install.packages("gridExtra", dependencies = TRUE)
+}
+require("gridExtra")
+
+## knitr - for dynamic report generation ----
+if (!is.element("knitr", installed.packages()[, 1])) {
+  install.packages("knitr", dependencies = TRUE)
+}
+require("knitr")
+
+## kableExtra - for nicely formatted output tables ----
+if (!is.element("kableExtra", installed.packages()[, 1])) {
+  install.packages("kableExtra", dependencies = TRUE)
+}
+require("kableExtra")
+
+## formattable -  To create a formattable object ----
+# A formattable object is an object to which a formatting function and related
+# attributes are attached.
+if (!is.element("formattable", installed.packages()[, 1])) {
+  install.packages("formattable", dependencies = TRUE)
+}
+require("formattable")
+
+## circlize - To create a cord diagram or visualization ----
+# by Gu et al. (2014)
+if (!is.element("circlize", installed.packages()[, 1])) {
+  install.packages("circlize", dependencies = TRUE)
+}
+require("circlize")
+
+## memery - For creating data analysis related memes ----
+# The memery package generates internet memes that optionally include a
+# superimposed inset plot and other atypical features, combining the visual
+# impact of an attention-grabbing meme with graphic results of data analysis.
+if (!is.element("memery", installed.packages()[, 1])) {
+  install.packages("memery", dependencies = TRUE)
+}
+require("memery")
+
+## magick - For image processing in R ----
+if (!is.element("magick", installed.packages()[, 1])) {
+  install.packages("magick", dependencies = TRUE)
+}
+require("magick")
+
+## yarrr - To create a pirate plot ----
+if (!is.element("yarrr", installed.packages()[, 1])) {
+  install.packages("yarrr", dependencies = TRUE)
+}
+require("yarrr")
+
+## radarchart - To create interactive radar charts using ChartJS ----
+if (!is.element("radarchart", installed.packages()[, 1])) {
+  install.packages("radarchart", dependencies = TRUE)
+}
+require("radarchart")
+
+## igraph - To create ngram network diagrams ----
+if (!is.element("igraph", installed.packages()[, 1])) {
+  install.packages("igraph", dependencies = TRUE)
+}
+require("igraph")
+
+## wordcloud2 - For creating wordcloud by using 'wordcloud2.JS ----
+if (!is.element("wordcloud2", installed.packages()[, 1])) {
+  install.packages("wordcloud2", dependencies = TRUE)
+}
+require("wordcloud2")
+
+## readr - Load datasets from CSV files ----
+if (!is.element("readr", installed.packages()[, 1])) {
+  install.packages("readr", dependencies = TRUE)
+}
+require("readr")
+
+blue_grey_colours_11 <- c("#27408E", "#304FAF", "#536CB5", "#6981c7", "#8da0db",
+                          "#dde5ec", "#c8c9ca", "#B9BCC2", "#A7AAAF", "#888A8E",
+                          "#636569")
+
+blue_grey_colours_6 <- c("#27408E", "#304FAF", "#536CB5",
+                         "#B9BCC2", "#A7AAAF", "#888A8E")
+
+blue_grey_colours_4 <- c("#27408E", "#536CB5",
+                         "#B9BCC2", "#888A8E")
+
+blue_grey_colours_2 <- c("#27408E",
+                         "#888A8E")
+
+blue_grey_colours_1 <- c("#6981c7")
+
+# Custom theme for visualizations
+blue_grey_theme <- function() {
+  theme(
+    axis.ticks = element_line(
+                              linewidth = 1, linetype = "dashed",
+                              lineend = NULL, color = "#dfdede",
+                              arrow = NULL, inherit.blank = FALSE),
+    axis.text = element_text(
+                             face = "bold", color = "#3f3f41",
+                             size = 12, hjust = 0.5),
+    axis.title = element_text(face = "bold", color = "#3f3f41",
+                              size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", color = "#3f3f41",
+                              size = 16, hjust = 0.5),
+    panel.grid = element_line(
+                              linewidth = 0.1, linetype = "dashed",
+                              lineend = NULL, color = "#dfdede",
+                              arrow = NULL, inherit.blank = FALSE),
+    panel.background = element_rect(fill = "#f3eeee"),
+    legend.title = element_text(face = "plain", color = "#3f3f41",
+                                size = 12, hjust = 0),
+    legend.position = "right"
+  )
+}
+```
+
+# Course Evaluation Rating per Group and per Gender
+
+This snippet creates a decorated tabular output to display average course evaluation ratings per class group and gender.
+
+```{r Second Code Chunk}
+student_performance_dataset <-
+  read_csv("data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV",
+           col_types =
+             cols(
+               class_group = col_factor(levels = c("A", "B", "C")),
+               gender = col_factor(levels = c("1", "0")),
+               YOB = col_date(format = "%Y"),
+               regret_choosing_bi = col_factor(levels = c("1", "0")),
+               drop_bi_now = col_factor(levels = c("1", "0")),
+               motivator = col_factor(levels = c("1", "0")),
+               read_content_before_lecture =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               anticipate_test_questions =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               answer_rhetorical_questions =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               find_terms_I_do_not_know =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               copy_new_terms_in_reading_notebook =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               take_quizzes_and_use_results =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               reorganise_course_outline =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               write_down_important_points =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               space_out_revision =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               studying_in_study_group =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               schedule_appointments =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               goal_oriented = col_factor(levels = c("1", "0")),
+               spaced_repetition =
+                 col_factor(levels = c("1", "2", "3", "4")),
+               testing_and_active_recall =
+                 col_factor(levels = c("1", "2", "3", "4")),
+               interleaving = col_factor(levels = c("1", "2", "3", "4")),
+               categorizing = col_factor(levels = c("1", "2", "3", "4")),
+               retrospective_timetable =
+                 col_factor(levels = c("1", "2", "3", "4")),
+               cornell_notes = col_factor(levels = c("1", "2", "3", "4")),
+               sq3r = col_factor(levels = c("1", "2", "3", "4")),
+               commute = col_factor(levels = c("1", "2", "3", "4")),
+               study_time = col_factor(levels = c("1", "2", "3", "4")),
+               repeats_since_Y1 = col_integer(),
+               paid_tuition = col_factor(levels = c("0", "1")),
+               free_tuition = col_factor(levels = c("0", "1")),
+               extra_curricular = col_factor(levels = c("0", "1")),
+               sports_extra_curricular = col_factor(levels = c("0", "1")),
+               exercise_per_week = col_factor(levels = c("0", "1", "2", "3")),
+               meditate = col_factor(levels = c("0", "1", "2", "3")),
+               pray = col_factor(levels = c("0", "1", "2", "3")),
+               internet = col_factor(levels = c("0", "1")),
+               laptop = col_factor(levels = c("0", "1")),
+               family_relationships =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               friendships = col_factor(levels = c("1", "2", "3", "4", "5")),
+               romantic_relationships =
+                 col_factor(levels = c("0", "1", "2", "3", "4")),
+               spiritual_wellnes =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               financial_wellness =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               health = col_factor(levels = c("1", "2", "3", "4", "5")),
+               day_out = col_factor(levels = c("0", "1", "2", "3")),
+               night_out = col_factor(levels = c("0", "1", "2", "3")),
+               alcohol_or_narcotics =
+                 col_factor(levels = c("0", "1", "2", "3")),
+               mentor = col_factor(levels = c("0", "1")),
+               mentor_meetings = col_factor(levels = c("0", "1", "2", "3")),
+               `Attendance Waiver Granted: 1 = Yes, 0 = No` =
+                 col_factor(levels = c("0", "1")),
+               GRADE = col_factor(levels = c("A", "B", "C", "D", "E"))),
+           locale = locale())
+
+evaluation_per_group_per_gender <- student_performance_dataset %>% # nolint
+  mutate(`Student's Gender` =
+           ifelse(gender == 1, "Male", "Female")) %>%
+  select(class_group, gender,
+         `Student's Gender`, `Average Course Evaluation Rating`) %>%
+  filter(!is.na(`Average Course Evaluation Rating`)) %>%
+  group_by(class_group, `Student's Gender`) %>%
+  summarise(average_evaluation_rating =
+              mean(`Average Course Evaluation Rating`)) %>%
+  arrange(desc(average_evaluation_rating), .by_group = TRUE)
+evaluation_per_group_per_gender %>%
+  rename(`Class Group` = class_group) %>%
+  rename(`Average Course Evaluation Rating` = average_evaluation_rating) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`) %>%
+  mutate(`Average Course Evaluation Rating` =
+           color_tile("#B9BCC2", "#536CB5")
+           (`Average Course Evaluation Rating`)) %>%
+  kable("html", escape = FALSE, align = "c",
+        caption = "Course Evaluation Rating per Group and per Gender") %>%
+  kable_styling(bootstrap_options =
+                  c("striped", "condensed", "bordered"),
+                full_width = FALSE)
+```
+
+This snippet generates a bar chart to visualize average course evaluation ratings per class group and gender.
+
+```{r Third Code Chunk}
+evaluation_per_group_per_gender %>%
+  ggplot() +
+  geom_bar(aes(x = class_group, y = average_evaluation_rating,
+               fill = `Student's Gender`),
+           stat = "identity", position = "dodge") +
+  expand_limits(y = 0) +
+  blue_grey_theme() +
+  scale_fill_manual(values = blue_grey_colours_2) +
+  ggtitle("Course Evaluation Rating per Group and per Gender") +
+  labs(x = "Class Group", y = "Average Rating")
+```
+
+# Word Count
+
+## Word Count per gender
+
+The following snippet displays the number of significant words in evaluation likes per gender in a tabular format
+
+```{r Fourth Code Chunk}
+evaluation_likes_and_wishes <- student_performance_dataset %>%
+  mutate(`Student's Gender` =
+           ifelse(gender == 1, "Male", "Female")) %>%
+  rename(`Class Group` = class_group) %>%
+  rename(Likes = `D - 1. Write two things you like about the teaching and learning in this unit so far.`) %>% # nolint
+  rename(Wishes = `D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)`) %>% # nolint
+  select(`Class Group`,
+         `Student's Gender`, `Average Course Evaluation Rating`,
+         Likes, Wishes) %>%
+  filter(!is.na(`Average Course Evaluation Rating`)) %>%
+  arrange(`Class Group`)
+
+undesirable_words <- c("wow", "lol", "none", "na")
+
+evaluation_likes_filtered <- evaluation_likes_and_wishes %>% # nolint
+  unnest_tokens(word, Likes) %>%
+  anti_join(stop_words, by = c("word")) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Likes (tokenized)` = word) %>%
+  select(-Wishes)
+word_count_per_gender_likes <- evaluation_likes_filtered %>%
+  group_by(`Student's Gender`) %>%
+  summarise(num_words = n()) %>%
+  arrange(desc(num_words))
+  
+word_count_per_gender_likes %>%
+  mutate(num_words = color_bar("lightblue")(num_words)) %>%
+  rename(`Number of Words` = num_words) %>%
+  kable("html", escape = FALSE, align = "c",
+        caption = "Number of Significant Words in Evaluation Likes 
+                   per Gender: Minus contractions, special characters, 
+                   stopwords, short words, and censored words.") %>%
+  kable_styling(bootstrap_options =
+                  c("striped", "condensed", "bordered"),
+                full_width = FALSE)
+```
+
+The following snippet displays the number of significant words in evaluation wishes per gender in a tabular format
+
+```{r Fifth Code Chunck}
+evaluation_likes_and_wishes <- student_performance_dataset %>%
+  mutate(`Student's Gender` =
+           ifelse(gender == 1, "Male", "Female")) %>%
+  rename(`Class Group` = class_group) %>%
+  rename(Likes = `D - 1. Write two things you like about the teaching and learning in this unit so far.`) %>% # nolint
+  rename(Wishes = `D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)`) %>% # nolint
+  select(`Class Group`,
+         `Student's Gender`, `Average Course Evaluation Rating`,
+         Likes, Wishes) %>%
+  filter(!is.na(`Average Course Evaluation Rating`)) %>%
+  arrange(`Class Group`)
+
+undesirable_words <- c("wow", "lol", "none", "na")
+
+evaluation_wishes_filtered <- evaluation_likes_and_wishes %>% # nolint
+  unnest_tokens(word, Wishes) %>%
+  anti_join(stop_words, by = c("word")) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Wishes (tokenized)` = word) %>%
+  select(-Likes)
+
+word_count_per_gender_wishes <- evaluation_wishes_filtered %>%
+  group_by(`Student's Gender`) %>%
+  summarise(num_words = n()) %>%
+  arrange(desc(num_words))
+
+ word_count_per_gender_wishes %>%
+  mutate(num_words = color_bar("lightblue")(num_words)) %>%
+  rename(`Number of Words` = num_words) %>%
+  kable("html", escape = FALSE, align = "c",
+        caption = "Number of Significant Words in Evaluation Wishes 
+                   per Gender: Minus contractions, special characters, 
+                   stopwords, short words, and censored words.") %>%
+  kable_styling(bootstrap_options =
+                  c("striped", "condensed", "bordered"),
+                full_width = FALSE)
+```
+
+## Top words for Group B students
+
+Displays the most frequently used words in course evaluation likes for students in group B.
+
+```{r Your Sixth Code Chunk}
+evaluation_likes_filtered %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Likes (tokenized)`) %>%
+  filter(`Class Group` == "B") %>%
+  count(`Likes (tokenized)`, sort = TRUE) %>%
+  top_n(9) %>%
+  mutate(`Likes (tokenized)` = reorder(`Likes (tokenized)`, n)) %>%
+  ggplot() +
+  geom_col(aes(`Likes (tokenized)`, n), fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  xlab("Word in Course Evaluation") +
+  ylab("Number of Times Used (Term Frequency)") +
+  ggtitle("Most Frequently Used Words in Course Evaluation Likes for Group B
+          Students") +
+  coord_flip()
+```
+
+## Top 10 words for female students
+
+Generates a bar chart showing the most frequently used words in course evaluation wishes by female students
+
+```{r Seventh Code Chunk}
+evaluation_wishes_filtered %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Wishes (tokenized)`) %>%
+  filter(`Student's Gender` == "Female") %>%
+  count(`Wishes (tokenized)`, sort = TRUE) %>%
+  top_n(9) %>%
+  mutate(`Wishes (tokenized)` = reorder(`Wishes (tokenized)`, n)) %>%
+  ggplot() +
+  geom_col(aes(`Wishes (tokenized)`, n), fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  xlab("Word in Course Evaluation") +
+  ylab("Number of Times Used (Term Frequency)") +
+  ggtitle("Most Frequently Used Words in Course Evaluation Wishes for Female
+          Students") +
+  coord_flip()
+```
+
+# Word Cloud
+
+## Word Cloud for Evaluation Likes
+
+This code generates a word cloud visualization for evaluation likes, highlighting the most frequently used words.
+
+```{r Eighth Code Chunck}
+evaluation_likes_filtered_cloud <- evaluation_likes_filtered %>% # nolint
+  count(`Likes (tokenized)`, sort = TRUE)
+
+wordcloud2(evaluation_likes_filtered_cloud, size = .5)
+```
+
+## Word Cloud for Evaluation Wishes
+
+This code generates a word cloud visualization for evaluation wishes, highlighting the most frequently used words.
+
+```{r Nineth Code Chunck}
+evaluation_wishes_filtered_cloud <- evaluation_wishes_filtered %>% # nolint
+  count(`Wishes (tokenized)`, sort = TRUE)
+
+wordcloud2(evaluation_wishes_filtered_cloud, size = .5)
+```
+
+# TF-IDF Score
+
+## TF-IDF Score per Group
+
+Calculates and visualizes the TF-IDF (Term Frequency-Inverse Document Frequency) scores for important words in evaluation likes, grouped by class group.
+
+```{r Tenth Code Chunck}
+popular_tfidf_words_likes <- evaluation_wishes_filtered %>% # nolint
+  unnest_tokens(word, `Wishes (tokenized)`) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Wishes (tokenized)` = word) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Wishes (tokenized)`) %>%
+  count(`Class Group`, `Wishes (tokenized)`, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(`Wishes (tokenized)`, `Class Group`, n)
+
+head(popular_tfidf_words_likes)
+
+top_popular_tfidf_words <- popular_tfidf_words_likes %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(`Wishes (tokenized)` =
+           factor(`Wishes (tokenized)`,
+                  levels = rev(unique(`Wishes (tokenized)`)))) %>%
+  group_by(`Class Group`) %>%
+  slice(seq_len(10)) %>%
+  ungroup() %>%
+  arrange(`Class Group`, tf_idf) %>%
+  mutate(row = row_number())
+
+top_popular_tfidf_words %>%
+  ggplot(aes(x = row, tf_idf, fill = `Class Group`)) +
+  geom_col(fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  labs(x = "Word in Course Evaluation", y = "TF-IDF Score") +
+  ggtitle("Important Words using TF-IDF by Chart Level") +
+  ggtitle("Most Important Words by TF-IDF Score in Course Evaluation Wishes per 
+      Class Group") +
+  facet_wrap(~`Class Group`, scales = "free") +
+  scale_x_continuous(
+                     breaks = top_popular_tfidf_words$row,
+                     labels = top_popular_tfidf_words$`Wishes (tokenized)`) +
+  coord_flip()
+```
+
+## TF-IDF Score per Gender (Wishes)
+
+Calculates and visualizes TF-IDF scores for important words in evaluation wishes, grouped by gender.
+
+```{r Eleventh Code Chunck}
+popular_tfidf_words_gender_wishes <- evaluation_wishes_filtered %>% # nolint
+  unnest_tokens(word, `Wishes (tokenized)`) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Wishes (tokenized)` = word) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Wishes (tokenized)`) %>%
+  count(`Student's Gender`, `Wishes (tokenized)`, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(`Wishes (tokenized)`, `Student's Gender`, n)
+
+head(popular_tfidf_words_gender_wishes)
+
+top_popular_tfidf_words <- popular_tfidf_words_gender_wishes %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(`Wishes (tokenized)` =
+           factor(`Wishes (tokenized)`,
+                  levels = rev(unique(`Wishes (tokenized)`)))) %>%
+  group_by(`Student's Gender`) %>%
+  slice(seq_len(10)) %>%
+  ungroup() %>%
+  arrange(`Student's Gender`, tf_idf) %>%
+  mutate(row = row_number())
+
+top_popular_tfidf_words %>%
+  ggplot(aes(x = row, tf_idf, fill = `Student's Gender`)) +
+  geom_col(fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  labs(x = "Word in Course Evaluation", y = "TF-IDF Score") +
+  ggtitle("Important Words using TF-IDF by Chart Level") +
+  ggtitle("Most Important Words by TF-IDF Score in Course Evaluation Wishes per 
+      Class Group") +
+  facet_wrap(~`Student's Gender`, scales = "free") +
+  scale_x_continuous(
+                     breaks = top_popular_tfidf_words$row,
+                     labels = top_popular_tfidf_words$`Wishes (tokenized)`) +
+  coord_flip()
+```
