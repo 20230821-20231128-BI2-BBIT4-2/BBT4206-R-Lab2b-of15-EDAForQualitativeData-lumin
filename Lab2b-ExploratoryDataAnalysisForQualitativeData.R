@@ -288,7 +288,7 @@ kable_theme <- function(dat, caption) {
 
 # STEP 3. Load the Dataset ----
 student_performance_dataset <-
-  read_csv("data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV",
+  read_csv("/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/performance-dataset.csv",
            col_types =
              cols(
                class_group = col_factor(levels = c("A", "B", "C")),
@@ -543,7 +543,7 @@ View(evaluation_likes_and_wishes)
 
 # [OPTIONAL] You can save the file as a CSV at this point
 write.csv(evaluation_likes_and_wishes,
-          file = "data/evaluation_likes_and_wishes.csv",
+          file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_likes_and_wishes.csv",
           row.names = FALSE)
 
 ## Stemming/Lemmatization ----
@@ -626,7 +626,7 @@ evaluation_likes_filtered <- evaluation_likes_and_wishes %>% # nolint
 
 # Lastly, we save the created data frame as a CSV file:
 write.csv(evaluation_likes_filtered,
-          file = "data/evaluation_likes_filtered.csv",
+          file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_likes_filtered.csv",
           row.names = FALSE)
 
 # The same is done to create a data frame for the "wishes" only
@@ -640,7 +640,7 @@ evaluation_wishes_filtered <- evaluation_likes_and_wishes %>% # nolint
   select(-Likes)
 
 write.csv(evaluation_wishes_filtered,
-          file = "data/evaluation_wishes_filtered.csv",
+          file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_wishes_filtered.csv",
           row.names = FALSE)
 
 # STEP 6. Word Count ----
@@ -1363,3 +1363,4 @@ top_popular_tfidf_words %>%
 # Upload *the link* to "Lab-Submission-Markdown.md" (not .Rmd)
 # markdown file hosted on Github (do not upload the .Rmd or .md markdown files)
 # through the submission link provided on eLearning.
+####
