@@ -14,6 +14,11 @@ Lumin
   Data:](#step-4-create-a-subset-of-the-data)
 - [Step 5: Data Cleansing for Qualitative
   Data:](#step-5-data-cleansing-for-qualitative-data)
+- [Step 6: Word Count:](#step-6-word-count)
+- [Step 7: Top Words:](#step-7-top-words)
+- [Step 8: Word Cloud:](#step-8-word-cloud)
+- [Step 9: Term Frequency - Inverse Document Frequency
+  (TF-IDF)](#step-9-term-frequency---inverse-document-frequency-tf-idf)
 
 # Student Details
 
@@ -79,55 +84,56 @@ lapply(.libPaths(), list.files)
 ```
 
     ## [[1]]
-    ##   [1] "Amelia"          "askpass"         "backports"       "base64enc"      
-    ##   [5] "BayesFactor"     "bit"             "bit64"           "brew"           
-    ##   [9] "brio"            "broom"           "bslib"           "cachem"         
-    ##  [13] "Cairo"           "callr"           "circlize"        "classInt"       
-    ##  [17] "cli"             "clipr"           "coda"            "collections"    
-    ##  [21] "colorspace"      "colourpicker"    "commonmark"      "contfrac"       
-    ##  [25] "cowplot"         "cpp11"           "crayon"          "curl"           
-    ##  [29] "cyclocomp"       "DBI"             "desc"            "deSolve"        
-    ##  [33] "diffobj"         "digest"          "dplyr"           "e1071"          
-    ##  [37] "ellipsis"        "elliptic"        "evaluate"        "fansi"          
-    ##  [41] "farver"          "fastmap"         "fontawesome"     "forcats"        
-    ##  [45] "foreach"         "formatR"         "formattable"     "fs"             
-    ##  [49] "generics"        "ggforce"         "ggplot2"         "ggraph"         
-    ##  [53] "ggrepel"         "glmnet"          "GlobalOptions"   "glue"           
-    ##  [57] "graphlayouts"    "gridExtra"       "gtable"          "haven"          
-    ##  [61] "highr"           "hms"             "htmltools"       "htmlwidgets"    
-    ##  [65] "httpuv"          "httr"            "hypergeo"        "igraph"         
-    ##  [69] "isoband"         "iterators"       "janeaustenr"     "jomo"           
-    ##  [73] "jpeg"            "jquerylib"       "jsonlite"        "kableExtra"     
-    ##  [77] "knitr"           "labeling"        "languageserver"  "later"          
-    ##  [81] "lazyeval"        "lifecycle"       "lintr"           "lme4"           
-    ##  [85] "magick"          "magrittr"        "markdown"        "Matrix"         
-    ##  [89] "MatrixModels"    "memery"          "memoise"         "mice"           
-    ##  [93] "mime"            "miniUI"          "minqa"           "mitml"          
-    ##  [97] "munsell"         "mvtnorm"         "naniar"          "NHANES"         
-    ## [101] "nloptr"          "norm"            "numDeriv"        "openssl"        
-    ## [105] "ordinal"         "pan"             "pbapply"         "pillar"         
-    ## [109] "pkgconfig"       "pkgload"         "plyr"            "png"            
-    ## [113] "polyclip"        "praise"          "prettyunits"     "processx"       
-    ## [117] "progress"        "promises"        "proxy"           "ps"             
-    ## [121] "purrr"           "R.cache"         "R.methodsS3"     "R.oo"           
-    ## [125] "R.rsp"           "R.utils"         "R6"              "radarchart"     
-    ## [129] "rappdirs"        "RColorBrewer"    "Rcpp"            "RcppArmadillo"  
-    ## [133] "RcppEigen"       "readr"           "rematch2"        "remotes"        
-    ## [137] "renv"            "reshape2"        "rex"             "rlang"          
-    ## [141] "rmarkdown"       "roxygen2"        "rprojroot"       "rstudioapi"     
-    ## [145] "rvest"           "s2"              "sass"            "scales"         
-    ## [149] "selectr"         "shape"           "shiny"           "shinyBS"        
-    ## [153] "shinycssloaders" "shinyjs"         "showtext"        "showtextdb"     
-    ## [157] "SnowballC"       "sourcetools"     "stringi"         "stringr"        
-    ## [161] "styler"          "svglite"         "sys"             "sysfonts"       
-    ## [165] "systemfonts"     "testthat"        "tibble"          "tidygraph"      
-    ## [169] "tidyr"           "tidyselect"      "tidytext"        "tinytex"        
-    ## [173] "tokenizers"      "tweenr"          "tzdb"            "ucminf"         
-    ## [177] "UpSetR"          "utf8"            "vctrs"           "viridis"        
-    ## [181] "viridisLite"     "visdat"          "vroom"           "waldo"          
-    ## [185] "webshot"         "widyr"           "withr"           "wk"             
-    ## [189] "wordcloud2"      "xfun"            "xml2"            "xmlparsedata"   
-    ## [193] "xtable"          "yaml"            "yarrr"          
+    ##   [1] "Amelia"          "AsioHeaders"     "askpass"         "backports"      
+    ##   [5] "base64enc"       "BayesFactor"     "bit"             "bit64"          
+    ##   [9] "brew"            "brio"            "broom"           "bslib"          
+    ##  [13] "cachem"          "Cairo"           "callr"           "chromote"       
+    ##  [17] "circlize"        "classInt"        "cli"             "clipr"          
+    ##  [21] "coda"            "collections"     "colorspace"      "colourpicker"   
+    ##  [25] "commonmark"      "contfrac"        "cowplot"         "cpp11"          
+    ##  [29] "crayon"          "curl"            "cyclocomp"       "DBI"            
+    ##  [33] "desc"            "deSolve"         "diffobj"         "digest"         
+    ##  [37] "dplyr"           "e1071"           "ellipsis"        "elliptic"       
+    ##  [41] "evaluate"        "fansi"           "farver"          "fastmap"        
+    ##  [45] "fontawesome"     "forcats"         "foreach"         "formatR"        
+    ##  [49] "formattable"     "fs"              "generics"        "ggforce"        
+    ##  [53] "ggplot2"         "ggraph"          "ggrepel"         "glmnet"         
+    ##  [57] "GlobalOptions"   "glue"            "graphlayouts"    "gridExtra"      
+    ##  [61] "gtable"          "haven"           "highr"           "hms"            
+    ##  [65] "htmltools"       "htmlwidgets"     "httpuv"          "httr"           
+    ##  [69] "hypergeo"        "igraph"          "isoband"         "iterators"      
+    ##  [73] "janeaustenr"     "jomo"            "jpeg"            "jquerylib"      
+    ##  [77] "jsonlite"        "kableExtra"      "knitr"           "labeling"       
+    ##  [81] "languageserver"  "later"           "lazyeval"        "lifecycle"      
+    ##  [85] "lintr"           "lme4"            "magick"          "magrittr"       
+    ##  [89] "markdown"        "Matrix"          "MatrixModels"    "memery"         
+    ##  [93] "memoise"         "mice"            "mime"            "miniUI"         
+    ##  [97] "minqa"           "mitml"           "munsell"         "mvtnorm"        
+    ## [101] "naniar"          "NHANES"          "nloptr"          "norm"           
+    ## [105] "numDeriv"        "openssl"         "ordinal"         "pan"            
+    ## [109] "pbapply"         "pillar"          "pkgconfig"       "pkgload"        
+    ## [113] "plyr"            "png"             "polyclip"        "praise"         
+    ## [117] "prettyunits"     "processx"        "progress"        "promises"       
+    ## [121] "proxy"           "ps"              "purrr"           "R.cache"        
+    ## [125] "R.methodsS3"     "R.oo"            "R.rsp"           "R.utils"        
+    ## [129] "R6"              "radarchart"      "rappdirs"        "RColorBrewer"   
+    ## [133] "Rcpp"            "RcppArmadillo"   "RcppEigen"       "readr"          
+    ## [137] "rematch2"        "remotes"         "renv"            "reshape2"       
+    ## [141] "rex"             "rlang"           "rmarkdown"       "roxygen2"       
+    ## [145] "rprojroot"       "rstudioapi"      "rvest"           "s2"             
+    ## [149] "sass"            "scales"          "selectr"         "shape"          
+    ## [153] "shiny"           "shinyBS"         "shinycssloaders" "shinyjs"        
+    ## [157] "showtext"        "showtextdb"      "SnowballC"       "sourcetools"    
+    ## [161] "stringi"         "stringr"         "styler"          "svglite"        
+    ## [165] "sys"             "sysfonts"        "systemfonts"     "testthat"       
+    ## [169] "tibble"          "tidygraph"       "tidyr"           "tidyselect"     
+    ## [173] "tidytext"        "tinytex"         "tokenizers"      "tweenr"         
+    ## [177] "tzdb"            "ucminf"          "UpSetR"          "utf8"           
+    ## [181] "vctrs"           "viridis"         "viridisLite"     "visdat"         
+    ## [185] "vroom"           "waldo"           "webshot"         "webshot2"       
+    ## [189] "websocket"       "widyr"           "withr"           "wk"             
+    ## [193] "wordcloud2"      "xfun"            "xml2"            "xmlparsedata"   
+    ## [197] "xtable"          "yaml"            "yarrr"          
     ## 
     ## [[2]]
     ## character(0)
@@ -563,319 +569,6 @@ dim(student_performance_dataset)
 ```
 
     ## [1] 101 100
-
-``` r
-# Data Types
-sapply(student_performance_dataset, class)
-```
-
-    ##                                                                                                                                                                                                                                                                                   class_group 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                        gender 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                           YOB 
-    ##                                                                                                                                                                                                                                                                                        "Date" 
-    ##                                                                                                                                                                                                                                                                            regret_choosing_bi 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                   drop_bi_now 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                     motivator 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                   read_content_before_lecture 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                     anticipate_test_questions 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                   answer_rhetorical_questions 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                      find_terms_I_do_not_know 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                            copy_new_terms_in_reading_notebook 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                  take_quizzes_and_use_results 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                     reorganise_course_outline 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                   write_down_important_points 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                            space_out_revision 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                       studying_in_study_group 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                         schedule_appointments 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                 goal_oriented 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                             spaced_repetition 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                     testing_and_active_recall 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                  interleaving 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                  categorizing 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                       retrospective_timetable 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                 cornell_notes 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                          sq3r 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                       commute 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                    study_time 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                              repeats_since_Y1 
-    ##                                                                                                                                                                                                                                                                                     "integer" 
-    ##                                                                                                                                                                                                                                                                                  paid_tuition 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                  free_tuition 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                              extra_curricular 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                       sports_extra_curricular 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                             exercise_per_week 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                      meditate 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                          pray 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                      internet 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                        laptop 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                          family_relationships 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                   friendships 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                        romantic_relationships 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                             spiritual_wellnes 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                            financial_wellness 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                        health 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                       day_out 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                     night_out 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                          alcohol_or_narcotics 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                                        mentor 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                               mentor_meetings 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                              A - 1. I am enjoying the subject 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                          A - 2. Classes start and end on time 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                               A - 3. The learning environment is participative, involves learning by doing and is group-based 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                             A - 4. The subject content is delivered according to the course outline and meets my expectations 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                           A - 5. The topics are clear and logically developed 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                             A - 6. I am developing my oral and writing skills 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                            A - 7. I am developing my reflective and critical reasoning skills 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                       A - 8. The assessment methods are assisting me to learn 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                            A - 9. I receive relevant feedback 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                             A - 10. I read the recommended readings and notes 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                   A - 11. I use the eLearning material posted 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                         B - 1. Concept 1 of 6: Principles of Business Intelligence and the DataOps Philosophy 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                             B - 2. Concept 3 of 6: Linear Algorithms for Predictive Analytics 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                     C - 2. Quizzes at the end of each concept 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                           C - 3. Lab manuals that outline the steps to follow during the labs 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                           C - 4. Required lab work submissions at the end of each lab manual that outline the activity to be done on your own 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                          C - 5. Supplementary videos to watch 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                    C - 6. Supplementary podcasts to listen to 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                          C - 7. Supplementary content to read 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                        C - 8. Lectures slides 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                            C - 9. Lecture notes on some of the lecture slides 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ## C - 10. The quality of the lectures given (quality measured by the breadth (the full span of knowledge of a subject) and depth (the extent to which specific topics are focused upon, amplified, and explored) of learning - NOT quality measured by how fun/comical/lively the lectures are) 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                              C - 11. The division of theory and practice such that most of the theory is done during the recorded online classes and most of the practice is done during the physical classes 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                      C - 12. The recordings of online classes 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                       D - 1. \nWrite two things you like about the teaching and learning in this unit so far. 
-    ##                                                                                                                                                                                                                                                                                   "character" 
-    ##                                                                                                                                                          D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester) 
-    ##                                                                                                                                                                                                                                                                                   "character" 
-    ##                                                                                                                                                                                                                                                              Average Course Evaluation Rating 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                     Average Level of Learning Attained Rating 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                             Average Pedagogical Strategy Effectiveness Rating 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                              Project: Section 1-4: (20%) x/10 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                             Project: Section 5-11: (50%) x/10 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                Project: Section 12: (30%) x/5 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                              Project: (10%): x/30 x 100 TOTAL 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                       Quiz 1 on Concept 1 (Introduction) x/32 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                             Quiz 3 on Concept 3 (Linear) x/15 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                         Quiz 4 on Concept 4 (Non-Linear) x/22 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                       Quiz 5 on Concept 5 (Dashboarding) x/10 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                               Quizzes and  Bonus Marks (7%): x/79 x 100 TOTAL 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                 Lab 1 - 2.c. - (Simple Linear Regression) x/5 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                Lab 2 - 2.e. -  (Linear Regression using Gradient Descent) x/5 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                               Lab 3 - 2.g. - (Logistic Regression using Gradient Descent) x/5 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                             Lab 4 - 2.h. - (Linear Discriminant Analysis) x/5 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                          Lab 5 - Chart JS Dashboard Setup x/5 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                      Lab Work (7%) x/25 x 100 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                        CAT 1 (8%): x/38 x 100 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                       CAT 2 (8%): x/100 x 100 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                    Attendance Waiver Granted: 1 = Yes, 0 = No 
-    ##                                                                                                                                                                                                                                                                                      "factor" 
-    ##                                                                                                                                                                                                                                                                        Absenteeism Percentage 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                  Coursework TOTAL: x/40 (40%) 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                              EXAM: x/60 (60%) 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                        TOTAL = Coursework TOTAL + EXAM (100%) 
-    ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                                                                                                         GRADE 
-    ##                                                                                                                                                                                                                                                                                      "factor"
-
-``` r
-glimpse(student_performance_dataset)
-```
-
-    ## Rows: 101
-    ## Columns: 100
-    ## $ class_group                                                                                                                                                                                                                                                                                     <fct> …
-    ## $ gender                                                                                                                                                                                                                                                                                          <fct> …
-    ## $ YOB                                                                                                                                                                                                                                                                                             <date> …
-    ## $ regret_choosing_bi                                                                                                                                                                                                                                                                              <fct> …
-    ## $ drop_bi_now                                                                                                                                                                                                                                                                                     <fct> …
-    ## $ motivator                                                                                                                                                                                                                                                                                       <fct> …
-    ## $ read_content_before_lecture                                                                                                                                                                                                                                                                     <fct> …
-    ## $ anticipate_test_questions                                                                                                                                                                                                                                                                       <fct> …
-    ## $ answer_rhetorical_questions                                                                                                                                                                                                                                                                     <fct> …
-    ## $ find_terms_I_do_not_know                                                                                                                                                                                                                                                                        <fct> …
-    ## $ copy_new_terms_in_reading_notebook                                                                                                                                                                                                                                                              <fct> …
-    ## $ take_quizzes_and_use_results                                                                                                                                                                                                                                                                    <fct> …
-    ## $ reorganise_course_outline                                                                                                                                                                                                                                                                       <fct> …
-    ## $ write_down_important_points                                                                                                                                                                                                                                                                     <fct> …
-    ## $ space_out_revision                                                                                                                                                                                                                                                                              <fct> …
-    ## $ studying_in_study_group                                                                                                                                                                                                                                                                         <fct> …
-    ## $ schedule_appointments                                                                                                                                                                                                                                                                           <fct> …
-    ## $ goal_oriented                                                                                                                                                                                                                                                                                   <fct> …
-    ## $ spaced_repetition                                                                                                                                                                                                                                                                               <fct> …
-    ## $ testing_and_active_recall                                                                                                                                                                                                                                                                       <fct> …
-    ## $ interleaving                                                                                                                                                                                                                                                                                    <fct> …
-    ## $ categorizing                                                                                                                                                                                                                                                                                    <fct> …
-    ## $ retrospective_timetable                                                                                                                                                                                                                                                                         <fct> …
-    ## $ cornell_notes                                                                                                                                                                                                                                                                                   <fct> …
-    ## $ sq3r                                                                                                                                                                                                                                                                                            <fct> …
-    ## $ commute                                                                                                                                                                                                                                                                                         <fct> …
-    ## $ study_time                                                                                                                                                                                                                                                                                      <fct> …
-    ## $ repeats_since_Y1                                                                                                                                                                                                                                                                                <int> …
-    ## $ paid_tuition                                                                                                                                                                                                                                                                                    <fct> …
-    ## $ free_tuition                                                                                                                                                                                                                                                                                    <fct> …
-    ## $ extra_curricular                                                                                                                                                                                                                                                                                <fct> …
-    ## $ sports_extra_curricular                                                                                                                                                                                                                                                                         <fct> …
-    ## $ exercise_per_week                                                                                                                                                                                                                                                                               <fct> …
-    ## $ meditate                                                                                                                                                                                                                                                                                        <fct> …
-    ## $ pray                                                                                                                                                                                                                                                                                            <fct> …
-    ## $ internet                                                                                                                                                                                                                                                                                        <fct> …
-    ## $ laptop                                                                                                                                                                                                                                                                                          <fct> …
-    ## $ family_relationships                                                                                                                                                                                                                                                                            <fct> …
-    ## $ friendships                                                                                                                                                                                                                                                                                     <fct> …
-    ## $ romantic_relationships                                                                                                                                                                                                                                                                          <fct> …
-    ## $ spiritual_wellnes                                                                                                                                                                                                                                                                               <fct> …
-    ## $ financial_wellness                                                                                                                                                                                                                                                                              <fct> …
-    ## $ health                                                                                                                                                                                                                                                                                          <fct> …
-    ## $ day_out                                                                                                                                                                                                                                                                                         <fct> …
-    ## $ night_out                                                                                                                                                                                                                                                                                       <fct> …
-    ## $ alcohol_or_narcotics                                                                                                                                                                                                                                                                            <fct> …
-    ## $ mentor                                                                                                                                                                                                                                                                                          <fct> …
-    ## $ mentor_meetings                                                                                                                                                                                                                                                                                 <fct> …
-    ## $ `A - 1. I am enjoying the subject`                                                                                                                                                                                                                                                              <dbl> …
-    ## $ `A - 2. Classes start and end on time`                                                                                                                                                                                                                                                          <dbl> …
-    ## $ `A - 3. The learning environment is participative, involves learning by doing and is group-based`                                                                                                                                                                                               <dbl> …
-    ## $ `A - 4. The subject content is delivered according to the course outline and meets my expectations`                                                                                                                                                                                             <dbl> …
-    ## $ `A - 5. The topics are clear and logically developed`                                                                                                                                                                                                                                           <dbl> …
-    ## $ `A - 6. I am developing my oral and writing skills`                                                                                                                                                                                                                                             <dbl> …
-    ## $ `A - 7. I am developing my reflective and critical reasoning skills`                                                                                                                                                                                                                            <dbl> …
-    ## $ `A - 8. The assessment methods are assisting me to learn`                                                                                                                                                                                                                                       <dbl> …
-    ## $ `A - 9. I receive relevant feedback`                                                                                                                                                                                                                                                            <dbl> …
-    ## $ `A - 10. I read the recommended readings and notes`                                                                                                                                                                                                                                             <dbl> …
-    ## $ `A - 11. I use the eLearning material posted`                                                                                                                                                                                                                                                   <dbl> …
-    ## $ `B - 1. Concept 1 of 6: Principles of Business Intelligence and the DataOps Philosophy`                                                                                                                                                                                                         <dbl> …
-    ## $ `B - 2. Concept 3 of 6: Linear Algorithms for Predictive Analytics`                                                                                                                                                                                                                             <dbl> …
-    ## $ `C - 2. Quizzes at the end of each concept`                                                                                                                                                                                                                                                     <dbl> …
-    ## $ `C - 3. Lab manuals that outline the steps to follow during the labs`                                                                                                                                                                                                                           <dbl> …
-    ## $ `C - 4. Required lab work submissions at the end of each lab manual that outline the activity to be done on your own`                                                                                                                                                                           <dbl> …
-    ## $ `C - 5. Supplementary videos to watch`                                                                                                                                                                                                                                                          <dbl> …
-    ## $ `C - 6. Supplementary podcasts to listen to`                                                                                                                                                                                                                                                    <dbl> …
-    ## $ `C - 7. Supplementary content to read`                                                                                                                                                                                                                                                          <dbl> …
-    ## $ `C - 8. Lectures slides`                                                                                                                                                                                                                                                                        <dbl> …
-    ## $ `C - 9. Lecture notes on some of the lecture slides`                                                                                                                                                                                                                                            <dbl> …
-    ## $ `C - 10. The quality of the lectures given (quality measured by the breadth (the full span of knowledge of a subject) and depth (the extent to which specific topics are focused upon, amplified, and explored) of learning - NOT quality measured by how fun/comical/lively the lectures are)` <dbl> …
-    ## $ `C - 11. The division of theory and practice such that most of the theory is done during the recorded online classes and most of the practice is done during the physical classes`                                                                                                              <dbl> …
-    ## $ `C - 12. The recordings of online classes`                                                                                                                                                                                                                                                      <dbl> …
-    ## $ `D - 1. \nWrite two things you like about the teaching and learning in this unit so far.`                                                                                                                                                                                                       <chr> …
-    ## $ `D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)`                                                                                                                                                          <chr> …
-    ## $ `Average Course Evaluation Rating`                                                                                                                                                                                                                                                              <dbl> …
-    ## $ `Average Level of Learning Attained Rating`                                                                                                                                                                                                                                                     <dbl> …
-    ## $ `Average Pedagogical Strategy Effectiveness Rating`                                                                                                                                                                                                                                             <dbl> …
-    ## $ `Project: Section 1-4: (20%) x/10`                                                                                                                                                                                                                                                              <dbl> …
-    ## $ `Project: Section 5-11: (50%) x/10`                                                                                                                                                                                                                                                             <dbl> …
-    ## $ `Project: Section 12: (30%) x/5`                                                                                                                                                                                                                                                                <dbl> …
-    ## $ `Project: (10%): x/30 x 100 TOTAL`                                                                                                                                                                                                                                                              <dbl> …
-    ## $ `Quiz 1 on Concept 1 (Introduction) x/32`                                                                                                                                                                                                                                                       <dbl> …
-    ## $ `Quiz 3 on Concept 3 (Linear) x/15`                                                                                                                                                                                                                                                             <dbl> …
-    ## $ `Quiz 4 on Concept 4 (Non-Linear) x/22`                                                                                                                                                                                                                                                         <dbl> …
-    ## $ `Quiz 5 on Concept 5 (Dashboarding) x/10`                                                                                                                                                                                                                                                       <dbl> …
-    ## $ `Quizzes and  Bonus Marks (7%): x/79 x 100 TOTAL`                                                                                                                                                                                                                                               <dbl> …
-    ## $ `Lab 1 - 2.c. - (Simple Linear Regression) x/5`                                                                                                                                                                                                                                                 <dbl> …
-    ## $ `Lab 2 - 2.e. -  (Linear Regression using Gradient Descent) x/5`                                                                                                                                                                                                                                <dbl> …
-    ## $ `Lab 3 - 2.g. - (Logistic Regression using Gradient Descent) x/5`                                                                                                                                                                                                                               <dbl> …
-    ## $ `Lab 4 - 2.h. - (Linear Discriminant Analysis) x/5`                                                                                                                                                                                                                                             <dbl> …
-    ## $ `Lab 5 - Chart JS Dashboard Setup x/5`                                                                                                                                                                                                                                                          <dbl> …
-    ## $ `Lab Work (7%) x/25 x 100`                                                                                                                                                                                                                                                                      <dbl> …
-    ## $ `CAT 1 (8%): x/38 x 100`                                                                                                                                                                                                                                                                        <dbl> …
-    ## $ `CAT 2 (8%): x/100 x 100`                                                                                                                                                                                                                                                                       <dbl> …
-    ## $ `Attendance Waiver Granted: 1 = Yes, 0 = No`                                                                                                                                                                                                                                                    <fct> …
-    ## $ `Absenteeism Percentage`                                                                                                                                                                                                                                                                        <dbl> …
-    ## $ `Coursework TOTAL: x/40 (40%)`                                                                                                                                                                                                                                                                  <dbl> …
-    ## $ `EXAM: x/60 (60%)`                                                                                                                                                                                                                                                                              <dbl> …
-    ## $ `TOTAL = Coursework TOTAL + EXAM (100%)`                                                                                                                                                                                                                                                        <dbl> …
-    ## $ GRADE                                                                                                                                                                                                                                                                                           <fct> …
 
 ``` r
 # Summary of each variable
@@ -1549,10 +1242,10 @@ write.csv(evaluation_likes_and_wishes,
 head(sample(stop_words$word, 20), 20)
 ```
 
-    ##  [1] "w"         "go"        "cannot"    "com"       "does"      "becomes"  
-    ##  [7] "but"       "out"       "rooms"     "went"      "who"       "many"     
-    ## [13] "whether"   "therefore" "keep"      "what's"    "wherever"  "thence"   
-    ## [19] "you"       "needs"
+    ##  [1] "aren't"     "plus"       "nearly"     "thru"       "pointed"   
+    ##  [6] "seen"       "yours"      "we're"      "ain't"      "unlikely"  
+    ## [11] "now"        "perhaps"    "now"        "clear"      "really"    
+    ## [16] "useful"     "several"    "know"       "whereafter" "clearly"
 
 ``` r
 # You can also create a list of words that you would like to censor
@@ -1596,5 +1289,841 @@ write.csv(evaluation_wishes_filtered,
           file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_wishes_filtered.csv",
           row.names = FALSE)
 
+library(readr)
+```
+
+# Step 6: Word Count:
+
+This code snippet conducts a word count analysis on two sets of data:
+“evaluation likes” and “evaluation wishes”. It begins by grouping the
+“evaluation likes” data by student gender and class group, calculating
+the number of words in each group. The results are then arranged in
+descending order of word count. Next, the code formats and presents
+these results as HTML tables, with each table showing the significant
+word count per gender and class group. The tables are styled using
+Bootstrap for a cleaner appearance. The process is repeated for the
+“evaluation wishes” data
+
+``` r
+## Evaluation Likes ---- Word count per gender ----
+word_count_per_gender_likes <- evaluation_likes_filtered %>%
+    group_by(`Student's Gender`) %>%
+    summarise(num_words = n()) %>%
+    arrange(desc(num_words))
+
+word_count_per_gender_likes %>%
+    mutate(num_words = color_bar("lightblue")(num_words)) %>%
+    rename(`Number of Words` = num_words) %>%
+    kable("html", escape = FALSE, align = "c", caption = "Number of Significant Words in Evaluation Likes 
+                   per Gender: Minus contractions, special characters, 
+                   stopwords, short words, and censored words.") %>%
+    kable_styling(bootstrap_options = c("striped", "condensed", "bordered"), full_width = FALSE)
+```
+
+<table class="table table-striped table-condensed table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of Significant Words in Evaluation Likes per Gender: Minus
+contractions, special characters, stopwords, short words, and censored
+words.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Student’s Gender
+</th>
+<th style="text-align:center;">
+Number of Words
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Male
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 100.00%">265</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Female
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 80.75%">214</span>
+</td>
+</tr>
+</tbody>
+</table>
+
+``` r
+### Word count per group ----
+word_count_per_group <- evaluation_likes_filtered %>%
+    group_by(`Class Group`) %>%
+    summarise(num_words = n()) %>%
+    arrange(desc(num_words))
+
+word_count_per_group %>%
+    mutate(num_words = color_bar("lightblue")(num_words)) %>%
+    rename(`Number of Words` = num_words) %>%
+    kable("html", escape = FALSE, align = "c", caption = "Number of Significant Words in Evaluation Likes 
+                   per Group: Minus contractions, special characters, 
+                   stopwords, short words, and censored words.") %>%
+    kable_styling(bootstrap_options = c("striped", "condensed", "bordered"), full_width = FALSE)
+```
+
+<table class="table table-striped table-condensed table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of Significant Words in Evaluation Likes per Group: Minus
+contractions, special characters, stopwords, short words, and censored
+words.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Class Group
+</th>
+<th style="text-align:center;">
+Number of Words
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 100.00%">228</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 71.05%">162</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 39.04%">89</span>
+</td>
+</tr>
+</tbody>
+</table>
+
+``` r
+## Evaluation Wishes ---- Word count per gender ----
+word_count_per_gender_wishes <- evaluation_wishes_filtered %>%
+    group_by(`Student's Gender`) %>%
+    summarise(num_words = n()) %>%
+    arrange(desc(num_words))
+
+word_count_per_gender_wishes %>%
+    mutate(num_words = color_bar("lightblue")(num_words)) %>%
+    rename(`Number of Words` = num_words) %>%
+    kable("html", escape = FALSE, align = "c", caption = "Number of Significant Words in Evaluation Wishes 
+                   per Gender: Minus contractions, special characters, 
+                   stopwords, short words, and censored words.") %>%
+    kable_styling(bootstrap_options = c("striped", "condensed", "bordered"), full_width = FALSE)
+```
+
+<table class="table table-striped table-condensed table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of Significant Words in Evaluation Wishes per Gender: Minus
+contractions, special characters, stopwords, short words, and censored
+words.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Student’s Gender
+</th>
+<th style="text-align:center;">
+Number of Words
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Male
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 100.00%">150</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Female
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 72.67%">109</span>
+</td>
+</tr>
+</tbody>
+</table>
+
+``` r
+### Word count per group ----
+word_count_per_group_wishes <- evaluation_wishes_filtered %>%
+    group_by(`Class Group`) %>%
+    summarise(num_words = n()) %>%
+    arrange(desc(num_words))
+
+word_count_per_group_wishes %>%
+    mutate(num_words = color_bar("lightblue")(num_words)) %>%
+    rename(`Number of Words` = num_words) %>%
+    kable("html", escape = FALSE, align = "c", caption = "Number of Significant Words in Evaluation Wishes 
+                   per Group: Minus contractions, special characters, 
+                   stopwords, short words, and censored words.") %>%
+    kable_styling(bootstrap_options = c("striped", "condensed", "bordered"), full_width = FALSE)
+```
+
+<table class="table table-striped table-condensed table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of Significant Words in Evaluation Wishes per Group: Minus
+contractions, special characters, stopwords, short words, and censored
+words.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Class Group
+</th>
+<th style="text-align:center;">
+Number of Words
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 100.00%">135</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 64.44%">87</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightblue; width: 27.41%">37</span>
+</td>
+</tr>
+</tbody>
+</table>
+
+``` r
+library(readr)
+```
+
+# Step 7: Top Words:
+
+This code conducts a series of analyses on “evaluation likes” and
+“evaluation wishes” data. For “likes,” it first filters data by gender
+(female, male), and class groups (A, B, C), then counts and visualizes
+the top 10 most frequently used words for each category. The code
+utilizes the ggplot2 package for creating visualizations. The same
+process is then repeated for “wishes” data. The result is a set of
+visualizations showing the most commonly used words in course
+evaluations, categorized by gender and class group, aiding in
+understanding the sentiments and preferences expressed by students. Each
+visualization includes a bar chart displaying the term frequency of the
+top words. The x-axis represents the words, while the y-axis indicates
+the number of times each word is used.
+
+``` r
+## Evaluation Likes ---- Top 10 words for female students ----
+evaluation_likes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Likes (tokenized)`) %>%
+    filter(`Student's Gender` == "Female") %>%
+    count(`Likes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Likes (tokenized)` = reorder(`Likes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Likes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes for Female
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-1.png)<!-- -->
+
+``` r
+### Top 10 words for male students ----
+evaluation_likes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Likes (tokenized)`) %>%
+    filter(`Student's Gender` == "Male") %>%
+    count(`Likes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Likes (tokenized)` = reorder(`Likes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Likes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes for Male
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-2.png)<!-- -->
+
+``` r
+### Top 10 words per gender ----
+popular_words <- evaluation_likes_filtered %>%
+    group_by(`Student's Gender`) %>%
+    count(`Likes (tokenized)`, `Student's Gender`, sort = TRUE) %>%
+    slice(seq_len(10)) %>%
+    ungroup() %>%
+    arrange(`Student's Gender`, n) %>%
+    mutate(row = row_number())
+
+popular_words %>%
+    ggplot(aes(row, n, fill = `Student's Gender`)) + geom_col(fill = blue_grey_colours_1) +
+    blue_grey_theme() + labs(x = "Word in Course Evaluation", y = "Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes per Gender") +
+    facet_wrap(~`Student's Gender`, scales = "free") + scale_x_continuous(breaks = popular_words$row,
+    labels = popular_words$`Likes (tokenized)`) + coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-3.png)<!-- -->
+
+``` r
+### Top words for Group A students ----
+evaluation_likes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Likes (tokenized)`) %>%
+    filter(`Class Group` == "A") %>%
+    count(`Likes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Likes (tokenized)` = reorder(`Likes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Likes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes for Group A
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-4.png)<!-- -->
+
+``` r
+### Top words for Group B students ----
+evaluation_likes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Likes (tokenized)`) %>%
+    filter(`Class Group` == "B") %>%
+    count(`Likes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Likes (tokenized)` = reorder(`Likes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Likes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes for Group B
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-5.png)<!-- -->
+
+``` r
+### Top words for Group C students ----
+evaluation_likes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Likes (tokenized)`) %>%
+    filter(`Class Group` == "C") %>%
+    count(`Likes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Likes (tokenized)` = reorder(`Likes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Likes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes for Group C
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-6.png)<!-- -->
+
+``` r
+### Top 10 words per group ----
+popular_words <- evaluation_likes_filtered %>%
+    group_by(`Class Group`) %>%
+    count(`Likes (tokenized)`, `Class Group`, sort = TRUE) %>%
+    slice(seq_len(10)) %>%
+    ungroup() %>%
+    arrange(`Class Group`, n) %>%
+    mutate(row = row_number())
+
+popular_words %>%
+    ggplot(aes(row, n, fill = `Class Group`)) + geom_col(fill = blue_grey_colours_1) +
+    blue_grey_theme() + labs(x = "Word in Course Evaluation", y = "Number of Times Used") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Likes per 
+          Class Group") +
+    facet_wrap(~`Class Group`, scales = "free") + scale_x_continuous(breaks = popular_words$row,
+    labels = popular_words$`Likes (tokenized)`) + coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-7.png)<!-- -->
+
+``` r
+## Evaluation Wishes ---- Top 10 words for female students ----
+evaluation_wishes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Wishes (tokenized)`) %>%
+    filter(`Student's Gender` == "Female") %>%
+    count(`Wishes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Wishes (tokenized)` = reorder(`Wishes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Wishes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes for Female
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-8.png)<!-- -->
+
+``` r
+### Top 10 words for male students ----
+evaluation_wishes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Wishes (tokenized)`) %>%
+    filter(`Student's Gender` == "Male") %>%
+    count(`Wishes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Wishes (tokenized)` = reorder(`Wishes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Wishes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes for Male
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-9.png)<!-- -->
+
+``` r
+### Top 10 words per gender ----
+popular_words <- evaluation_wishes_filtered %>%
+    group_by(`Student's Gender`) %>%
+    count(`Wishes (tokenized)`, `Student's Gender`, sort = TRUE) %>%
+    slice(seq_len(10)) %>%
+    ungroup() %>%
+    arrange(`Student's Gender`, n) %>%
+    mutate(row = row_number())
+
+popular_words %>%
+    ggplot(aes(row, n, fill = `Student's Gender`)) + geom_col(fill = blue_grey_colours_1) +
+    blue_grey_theme() + labs(x = "Word in Course Evaluation", y = "Number of Times Used") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes per Gender") +
+    facet_wrap(~`Student's Gender`, scales = "free") + scale_x_continuous(breaks = popular_words$row,
+    labels = popular_words$`Wishes (tokenized)`) + coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-10.png)<!-- -->
+
+``` r
+### Top words for Group A students ----
+evaluation_wishes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Wishes (tokenized)`) %>%
+    filter(`Class Group` == "A") %>%
+    count(`Wishes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Wishes (tokenized)` = reorder(`Wishes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Wishes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes for Group A
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-11.png)<!-- -->
+
+``` r
+### Top words for Group B students ----
+evaluation_wishes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Wishes (tokenized)`) %>%
+    filter(`Class Group` == "B") %>%
+    count(`Wishes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Wishes (tokenized)` = reorder(`Wishes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Wishes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes for Group B
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-12.png)<!-- -->
+
+``` r
+### Top words for Group C students ----
+evaluation_wishes_filtered %>%
+    select(`Class Group`, `Student's Gender`, `Average Course Evaluation Rating`,
+        `Wishes (tokenized)`) %>%
+    filter(`Class Group` == "C") %>%
+    count(`Wishes (tokenized)`, sort = TRUE) %>%
+    top_n(9) %>%
+    mutate(`Wishes (tokenized)` = reorder(`Wishes (tokenized)`, n)) %>%
+    ggplot() + geom_col(aes(`Wishes (tokenized)`, n), fill = blue_grey_colours_1) +
+    blue_grey_theme() + xlab("Word in Course Evaluation") + ylab("Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes for Group C
+          Students") +
+    coord_flip()
+```
+
+    ## Selecting by n
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-13.png)<!-- -->
+
+``` r
+### Top 10 words per group ----
+popular_words <- evaluation_wishes_filtered %>%
+    group_by(`Class Group`) %>%
+    count(`Wishes (tokenized)`, `Class Group`, sort = TRUE) %>%
+    slice(seq_len(10)) %>%
+    ungroup() %>%
+    arrange(`Class Group`, n) %>%
+    mutate(row = row_number())
+
+popular_words %>%
+    ggplot(aes(row, n, fill = `Class Group`)) + geom_col(fill = blue_grey_colours_1) +
+    blue_grey_theme() + labs(x = "Word in Course Evaluation", y = "Number of Times Used (Term Frequency)") +
+    ggtitle("Most Frequently Used Words in Course Evaluation Wishes per 
+          Class Group") +
+    facet_wrap(~`Class Group`, scales = "free") + scale_x_continuous(breaks = popular_words$row,
+    labels = popular_words$`Wishes (tokenized)`) + coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventh%20Code%20Chunk-14.png)<!-- -->
+
+``` r
+library(readr)
+```
+
+# Step 8: Word Cloud:
+
+This code is dedicated to generating word clouds for both “evaluation
+likes” and “evaluation wishes” data sets. It provides a brief cautionary
+note, highlighting some of the disadvantages of using word clouds for
+data analysis, including the lack of context, loss of quantitative
+information, and insensitivity to word importance, among others. For
+“evaluation likes,” the code first counts the occurrences of each
+tokenized word and then generates a word cloud using the wordcloud2
+function with a specified size. This creates a visually appealing
+representation of the most frequently occurring words in the dataset.
+The same process is then repeated for “evaluation wishes” data,
+resulting in a separate word cloud for this category. This visualization
+method offers a quick and intuitive way to grasp the most common words
+in each dataset
+
+``` r
+# [CAUTION] However, they also have several disadvantages:
+#   1. Lack of context
+#   2. Loss of quantitative information
+#   3. Insensitive to word importance
+#   4. Difficulty in handling large datasets
+#   5. Ineffective for sentiment analysis
+#   6. Ambiguity
+#   7. Limited customization
+#   8. Subjectivity
+#   9. Difficulty in multilingual texts
+#   10. Statistical limitations
+
+## Evaluation Likes ----
+evaluation_likes_filtered_cloud <- evaluation_likes_filtered %>% # nolint
+  count(`Likes (tokenized)`, sort = TRUE)
+
+wordcloud2(evaluation_likes_filtered_cloud, size = .5)
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Eighth%20Code%20Chunk-1.png)<!-- -->
+
+``` r
+## Evaluation Wishes ----
+evaluation_wishes_filtered_cloud <- evaluation_wishes_filtered %>% # nolint
+  count(`Wishes (tokenized)`, sort = TRUE)
+
+wordcloud2(evaluation_wishes_filtered_cloud, size = .5)
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Eighth%20Code%20Chunk-2.png)<!-- -->
+
+``` r
+library(readr)
+```
+
+# Step 9: Term Frequency - Inverse Document Frequency (TF-IDF)
+
+This code segment is focused on computing and visualizing TF-IDF (Term
+Frequency-Inverse Document Frequency) scores for words in both
+“evaluation likes” and “evaluation wishes” datasets, differentiated by
+gender and class group. For “evaluation likes”, it first processes the
+data by tokenizing, filtering out undesirable words, and selecting
+relevant columns. It then computes TF-IDF scores and extracts the top
+words based on these scores. The code then creates a visualization using
+ggplot2, showing the TF-IDF scores of the top words by gender and class
+group. The process is repeated for “evaluation wishes”, producing a
+separate set of TF-IDF scores and visualizations for this category.
+
+``` r
+## Evaluation Likes ----
+### TF-IDF Score per Gender ----
+popular_tfidf_words_gender_likes <- evaluation_likes_filtered %>% # nolint
+  unnest_tokens(word, `Likes (tokenized)`) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Likes (tokenized)` = word) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Likes (tokenized)`) %>%
+  count(`Student's Gender`, `Likes (tokenized)`, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(`Likes (tokenized)`, `Student's Gender`, n)
+
+head(popular_tfidf_words_gender_likes)
+```
+
+    ## # A tibble: 6 × 6
+    ##   `Student's Gender` `Likes (tokenized)`     n     tf   idf tf_idf
+    ##   <chr>              <chr>               <int>  <dbl> <dbl>  <dbl>
+    ## 1 Female             lecturer               12 0.0577     0      0
+    ## 2 Male               unit                    8 0.0310     0      0
+    ## 3 Female             concepts                7 0.0337     0      0
+    ## 4 Male               labs                    7 0.0271     0      0
+    ## 5 Male               notes                   7 0.0271     0      0
+    ## 6 Male               understanding           7 0.0271     0      0
+
+``` r
+top_popular_tfidf_words <- popular_tfidf_words_gender_likes %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(`Likes (tokenized)` =
+           factor(`Likes (tokenized)`,
+                  levels = rev(unique(`Likes (tokenized)`)))) %>%
+  group_by(`Student's Gender`) %>%
+  slice(seq_len(10)) %>%
+  ungroup() %>%
+  arrange(`Student's Gender`, tf_idf) %>%
+  mutate(row = row_number())
+
+top_popular_tfidf_words %>%
+  ggplot(aes(x = row, tf_idf, fill = `Student's Gender`)) +
+  geom_col(fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  labs(x = "Word in Course Evaluation", y = "TF-IDF Score") +
+  ggtitle("Important Words using TF-IDF by Chart Level") +
+  ggtitle("Most Important Words by TF-IDF Score in Course Evaluation Likes per 
+      Class Group") +
+  facet_wrap(~`Student's Gender`, scales = "free") +
+  scale_x_continuous(
+                     breaks = top_popular_tfidf_words$row,
+                     labels = top_popular_tfidf_words$`Likes (tokenized)`) +
+  coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Ninth%20Code%20Chunk-1.png)<!-- -->
+
+``` r
+### TF-IDF Score per Group ----
+popular_tfidf_words_likes <- evaluation_likes_filtered %>% # nolint
+  unnest_tokens(word, `Likes (tokenized)`) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Likes (tokenized)` = word) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Likes (tokenized)`) %>%
+  count(`Class Group`, `Likes (tokenized)`, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(`Likes (tokenized)`, `Class Group`, n)
+
+head(popular_tfidf_words_likes)
+```
+
+    ## # A tibble: 6 × 6
+    ##   `Class Group` `Likes (tokenized)`     n     tf   idf tf_idf
+    ##   <fct>         <chr>               <int>  <dbl> <dbl>  <dbl>
+    ## 1 B             notes                   7 0.0449 0.405 0.0182
+    ## 2 C             concepts                7 0.0317 0     0     
+    ## 3 C             lecturer                7 0.0317 0     0     
+    ## 4 C             practical               7 0.0317 1.10  0.0348
+    ## 5 C             understand              7 0.0317 0     0     
+    ## 6 A             lecturer                6 0.0674 0     0
+
+``` r
+top_popular_tfidf_words <- popular_tfidf_words_likes %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(`Likes (tokenized)` =
+           factor(`Likes (tokenized)`,
+                  levels = rev(unique(`Likes (tokenized)`)))) %>%
+  group_by(`Class Group`) %>%
+  slice(seq_len(10)) %>%
+  ungroup() %>%
+  arrange(`Class Group`, tf_idf) %>%
+  mutate(row = row_number())
+
+top_popular_tfidf_words %>%
+  ggplot(aes(x = row, tf_idf, fill = `Class Group`)) +
+  geom_col(fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  labs(x = "Word in Course Evaluation", y = "TF-IDF Score") +
+  ggtitle("Important Words using TF-IDF by Chart Level") +
+  ggtitle("Most Important Words by TF-IDF Score in Course Evaluation Likes per 
+      Class Group") +
+  facet_wrap(~`Class Group`, scales = "free") +
+  scale_x_continuous(
+                     breaks = top_popular_tfidf_words$row,
+                     labels = top_popular_tfidf_words$`Likes (tokenized)`) +
+  coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Ninth%20Code%20Chunk-2.png)<!-- -->
+
+``` r
+## Evaluation Wishes ----
+### TF-IDF Score per Gender ----
+popular_tfidf_words_gender_wishes <- evaluation_wishes_filtered %>% # nolint
+  unnest_tokens(word, `Wishes (tokenized)`) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Wishes (tokenized)` = word) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Wishes (tokenized)`) %>%
+  count(`Student's Gender`, `Wishes (tokenized)`, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(`Wishes (tokenized)`, `Student's Gender`, n)
+
+head(popular_tfidf_words_gender_wishes)
+```
+
+    ## # A tibble: 6 × 6
+    ##   `Student's Gender` `Wishes (tokenized)`     n     tf   idf tf_idf
+    ##   <chr>              <chr>                <int>  <dbl> <dbl>  <dbl>
+    ## 1 Male               class                    6 0.0408 0.693 0.0283
+    ## 2 Male               slides                   6 0.0408 0     0     
+    ## 3 Female             concepts                 5 0.0459 0     0     
+    ## 4 Female             slides                   4 0.0367 0     0     
+    ## 5 Female             labs                     3 0.0275 0     0     
+    ## 6 Female             notes                    3 0.0275 0     0
+
+``` r
+top_popular_tfidf_words <- popular_tfidf_words_gender_wishes %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(`Wishes (tokenized)` =
+           factor(`Wishes (tokenized)`,
+                  levels = rev(unique(`Wishes (tokenized)`)))) %>%
+  group_by(`Student's Gender`) %>%
+  slice(seq_len(10)) %>%
+  ungroup() %>%
+  arrange(`Student's Gender`, tf_idf) %>%
+  mutate(row = row_number())
+
+top_popular_tfidf_words %>%
+  ggplot(aes(x = row, tf_idf, fill = `Student's Gender`)) +
+  geom_col(fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  labs(x = "Word in Course Evaluation", y = "TF-IDF Score") +
+  ggtitle("Important Words using TF-IDF by Chart Level") +
+  ggtitle("Most Important Words by TF-IDF Score in Course Evaluation Wishes per 
+      Class Group") +
+  facet_wrap(~`Student's Gender`, scales = "free") +
+  scale_x_continuous(
+                     breaks = top_popular_tfidf_words$row,
+                     labels = top_popular_tfidf_words$`Wishes (tokenized)`) +
+  coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Ninth%20Code%20Chunk-3.png)<!-- -->
+
+``` r
+### TF-IDF Score per Group ----
+popular_tfidf_words_likes <- evaluation_wishes_filtered %>% # nolint
+  unnest_tokens(word, `Wishes (tokenized)`) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Wishes (tokenized)` = word) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`, `Wishes (tokenized)`) %>%
+  count(`Class Group`, `Wishes (tokenized)`, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(`Wishes (tokenized)`, `Class Group`, n)
+
+head(popular_tfidf_words_likes)
+```
+
+    ## # A tibble: 6 × 6
+    ##   `Class Group` `Wishes (tokenized)`     n     tf   idf  tf_idf
+    ##   <fct>         <chr>                <int>  <dbl> <dbl>   <dbl>
+    ## 1 C             slides                   8 0.0597 0     0      
+    ## 2 B             class                    4 0.0471 0.405 0.0191 
+    ## 3 C             concepts                 4 0.0299 0     0      
+    ## 4 B             concepts                 3 0.0353 0     0      
+    ## 5 C             learning                 3 0.0224 0     0      
+    ## 6 C             notes                    3 0.0224 0.405 0.00908
+
+``` r
+top_popular_tfidf_words <- popular_tfidf_words_likes %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(`Wishes (tokenized)` =
+           factor(`Wishes (tokenized)`,
+                  levels = rev(unique(`Wishes (tokenized)`)))) %>%
+  group_by(`Class Group`) %>%
+  slice(seq_len(10)) %>%
+  ungroup() %>%
+  arrange(`Class Group`, tf_idf) %>%
+  mutate(row = row_number())
+
+top_popular_tfidf_words %>%
+  ggplot(aes(x = row, tf_idf, fill = `Class Group`)) +
+  geom_col(fill = blue_grey_colours_1) +
+  blue_grey_theme() +
+  labs(x = "Word in Course Evaluation", y = "TF-IDF Score") +
+  ggtitle("Important Words using TF-IDF by Chart Level") +
+  ggtitle("Most Important Words by TF-IDF Score in Course Evaluation Wishes per 
+      Class Group") +
+  facet_wrap(~`Class Group`, scales = "free") +
+  scale_x_continuous(
+                     breaks = top_popular_tfidf_words$row,
+                     labels = top_popular_tfidf_words$`Wishes (tokenized)`) +
+  coord_flip()
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Ninth%20Code%20Chunk-4.png)<!-- -->
+
+``` r
 library(readr)
 ```
