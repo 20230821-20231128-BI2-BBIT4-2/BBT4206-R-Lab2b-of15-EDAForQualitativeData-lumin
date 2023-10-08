@@ -1,14 +1,19 @@
 Business Intelligence Lab Submission Markdown
 ================
-<Specify your group name here>
-<Specify the date when you submitted the lab>
+Lumin
+1/10/23
 
 - [Student Details](#student-details)
 - [Setup Chunk](#setup-chunk)
-- [\<Configuring Files \>](#configuring-files-)
-  - [\<You Can Have a Sub-Title Here\>](#you-can-have-a-sub-title-here)
-- [\<You can Provide Another Appropriate Title
-  Here\>](#you-can-provide-another-appropriate-title-here)
+- [Step 1: Install and Load Required
+  Packages:](#step-1-install-and-load-required-packages)
+- [Step 2: Customize the Visualizations, Tables, and Colour
+  Scheme:](#step-2-customize-the-visualizations-tables-and-colour-scheme)
+- [Step 3: Load the Dataset:](#step-3-load-the-dataset)
+- [Step 4: Create a Subset of the
+  Data:](#step-4-create-a-subset-of-the-data)
+- [Step 5: Data Cleansing for Qualitative
+  Data:](#step-5-data-cleansing-for-qualitative-data)
 
 # Student Details
 
@@ -46,7 +51,109 @@ defaults:
 > editor_options:  
 > chunk_output_type: console
 
-# \<Configuring Files \>
+# Step 1: Install and Load Required Packages:
+
+In this step, we ensure that the necessary R packages are installed and
+loaded. Packages are collections of R functions, data, and compiled code
+that extend the functionality of R. The install.packages() function is
+used to install packages, and library() is used to load them.
+
+``` r
+# Consider a library as the location where packages are stored.  Execute the
+# following command to list all the libraries available in your computer:
+.libPaths()
+```
+
+    ## [1] "/home/ki3ani/R/x86_64-pc-linux-gnu-library/4.1"
+    ## [2] "/usr/local/lib/R/site-library"                 
+    ## [3] "/usr/lib/R/site-library"                       
+    ## [4] "/usr/lib/R/library"
+
+``` r
+# One of the libraries should be a folder inside the project if you are using
+# renv
+
+# Then execute the following command to see which packages are available in
+# each library:
+lapply(.libPaths(), list.files)
+```
+
+    ## [[1]]
+    ##   [1] "Amelia"          "askpass"         "backports"       "base64enc"      
+    ##   [5] "BayesFactor"     "bit"             "bit64"           "brew"           
+    ##   [9] "brio"            "broom"           "bslib"           "cachem"         
+    ##  [13] "Cairo"           "callr"           "circlize"        "classInt"       
+    ##  [17] "cli"             "clipr"           "coda"            "collections"    
+    ##  [21] "colorspace"      "colourpicker"    "commonmark"      "contfrac"       
+    ##  [25] "cowplot"         "cpp11"           "crayon"          "curl"           
+    ##  [29] "cyclocomp"       "DBI"             "desc"            "deSolve"        
+    ##  [33] "diffobj"         "digest"          "dplyr"           "e1071"          
+    ##  [37] "ellipsis"        "elliptic"        "evaluate"        "fansi"          
+    ##  [41] "farver"          "fastmap"         "fontawesome"     "forcats"        
+    ##  [45] "foreach"         "formatR"         "formattable"     "fs"             
+    ##  [49] "generics"        "ggforce"         "ggplot2"         "ggraph"         
+    ##  [53] "ggrepel"         "glmnet"          "GlobalOptions"   "glue"           
+    ##  [57] "graphlayouts"    "gridExtra"       "gtable"          "haven"          
+    ##  [61] "highr"           "hms"             "htmltools"       "htmlwidgets"    
+    ##  [65] "httpuv"          "httr"            "hypergeo"        "igraph"         
+    ##  [69] "isoband"         "iterators"       "janeaustenr"     "jomo"           
+    ##  [73] "jpeg"            "jquerylib"       "jsonlite"        "kableExtra"     
+    ##  [77] "knitr"           "labeling"        "languageserver"  "later"          
+    ##  [81] "lazyeval"        "lifecycle"       "lintr"           "lme4"           
+    ##  [85] "magick"          "magrittr"        "markdown"        "Matrix"         
+    ##  [89] "MatrixModels"    "memery"          "memoise"         "mice"           
+    ##  [93] "mime"            "miniUI"          "minqa"           "mitml"          
+    ##  [97] "munsell"         "mvtnorm"         "naniar"          "NHANES"         
+    ## [101] "nloptr"          "norm"            "numDeriv"        "openssl"        
+    ## [105] "ordinal"         "pan"             "pbapply"         "pillar"         
+    ## [109] "pkgconfig"       "pkgload"         "plyr"            "png"            
+    ## [113] "polyclip"        "praise"          "prettyunits"     "processx"       
+    ## [117] "progress"        "promises"        "proxy"           "ps"             
+    ## [121] "purrr"           "R.cache"         "R.methodsS3"     "R.oo"           
+    ## [125] "R.rsp"           "R.utils"         "R6"              "radarchart"     
+    ## [129] "rappdirs"        "RColorBrewer"    "Rcpp"            "RcppArmadillo"  
+    ## [133] "RcppEigen"       "readr"           "rematch2"        "remotes"        
+    ## [137] "renv"            "reshape2"        "rex"             "rlang"          
+    ## [141] "rmarkdown"       "roxygen2"        "rprojroot"       "rstudioapi"     
+    ## [145] "rvest"           "s2"              "sass"            "scales"         
+    ## [149] "selectr"         "shape"           "shiny"           "shinyBS"        
+    ## [153] "shinycssloaders" "shinyjs"         "showtext"        "showtextdb"     
+    ## [157] "SnowballC"       "sourcetools"     "stringi"         "stringr"        
+    ## [161] "styler"          "svglite"         "sys"             "sysfonts"       
+    ## [165] "systemfonts"     "testthat"        "tibble"          "tidygraph"      
+    ## [169] "tidyr"           "tidyselect"      "tidytext"        "tinytex"        
+    ## [173] "tokenizers"      "tweenr"          "tzdb"            "ucminf"         
+    ## [177] "UpSetR"          "utf8"            "vctrs"           "viridis"        
+    ## [181] "viridisLite"     "visdat"          "vroom"           "waldo"          
+    ## [185] "webshot"         "widyr"           "withr"           "wk"             
+    ## [189] "wordcloud2"      "xfun"            "xml2"            "xmlparsedata"   
+    ## [193] "xtable"          "yaml"            "yarrr"          
+    ## 
+    ## [[2]]
+    ## character(0)
+    ## 
+    ## [[3]]
+    ## character(0)
+    ## 
+    ## [[4]]
+    ##  [1] "base"         "boot"         "class"        "cluster"      "codetools"   
+    ##  [6] "compiler"     "datasets"     "foreign"      "graphics"     "grDevices"   
+    ## [11] "grid"         "KernSmooth"   "lattice"      "MASS"         "Matrix"      
+    ## [16] "methods"      "mgcv"         "nlme"         "nnet"         "parallel"    
+    ## [21] "rpart"        "spatial"      "splines"      "stats"        "stats4"      
+    ## [26] "survival"     "tcltk"        "tools"        "translations" "utils"
+
+``` r
+# If renv::restore() did not install the 'languageserver' package (required to
+# use R for VS Code), then it can be installed manually as follows (restart R
+# after executing the command):
+if (!is.element("languageserver", installed.packages()[, 1])) {
+    install.packages("languageserver", dependencies = TRUE)
+}
+require("languageserver")
+```
+
+    ## Loading required package: languageserver
 
 ``` r
 ## dplyr - For data manipulation ----
@@ -250,18 +357,42 @@ require("magick")
 if (!is.element("yarrr", installed.packages()[, 1])) {
     install.packages("yarrr", dependencies = TRUE)
 }
-```
-
-    ## Installing package into '/home/ki3ani/R/x86_64-pc-linux-gnu-library/4.1'
-    ## (as 'lib' is unspecified)
-
-    ## also installing the dependencies 'MatrixModels', 'BayesFactor'
-
-``` r
 require("yarrr")
 ```
 
     ## Loading required package: yarrr
+
+    ## Loading required package: jpeg
+
+    ## Loading required package: BayesFactor
+
+    ## Loading required package: coda
+
+    ## Loading required package: Matrix
+
+    ## 
+    ## Attaching package: 'Matrix'
+
+    ## The following objects are masked from 'package:tidyr':
+    ## 
+    ##     expand, pack, unpack
+
+    ## ************
+    ## Welcome to BayesFactor 0.9.12-4.5. If you have questions, please contact Richard Morey (richarddmorey@gmail.com).
+    ## 
+    ## Type BFManual() to open the manual.
+    ## ************
+
+    ## yarrr v0.1.5. Citation info at citation('yarrr'). Package guide at yarrr.guide()
+
+    ## Email me at Nathaniel.D.Phillips.is@gmail.com
+
+    ## 
+    ## Attaching package: 'yarrr'
+
+    ## The following object is masked from 'package:ggplot2':
+    ## 
+    ##     diamonds
 
 ``` r
 ## radarchart - To create interactive radar charts using ChartJS ----
@@ -285,6 +416,10 @@ require("igraph")
 
     ## 
     ## Attaching package: 'igraph'
+
+    ## The following object is masked from 'package:BayesFactor':
+    ## 
+    ##     compare
 
     ## The following object is masked from 'package:circlize':
     ## 
@@ -331,6 +466,20 @@ require("readr")
     ## Loading required package: readr
 
 ``` r
+library(readr)
+```
+
+# Step 2: Customize the Visualizations, Tables, and Colour Scheme:
+
+In this step, we’re customizing the appearance of the visualizations,
+tables, and color scheme to enhance the output.
+theme_set(theme_minimal()): This sets the theme for the plots to a
+minimalistic style. It affects the overall look of the plots.
+options(scipen = 999): This disables scientific notation when printing
+numbers. It ensures that large numbers are displayed in a readable
+format.
+
+``` r
 # STEP 2. Customize the Visualizations, Tables, and Colour Scheme ---- The
 # following defines a blue-grey colour scheme for the visualizations: shades of
 # blue and shades of grey
@@ -367,10 +516,9 @@ kable_theme <- function(dat, caption) {
 library(readr)
 ```
 
-Loading the Dataset:
+# Step 3: Load the Dataset:
 
 ``` r
-# STEP 3. Load the Dataset ----
 student_performance_dataset <- read_csv("/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/performance-dataset.csv",
     col_types = cols(class_group = col_factor(levels = c("A", "B", "C")), gender = col_factor(levels = c("1",
         "0")), YOB = col_date(format = "%Y"), regret_choosing_bi = col_factor(levels = c("1",
@@ -1155,22 +1303,298 @@ summary(student_performance_dataset)
 library(readr)
 ```
 
-## \<You Can Have a Sub-Title Here\>
+# Step 4: Create a Subset of the Data:
+
+Sometimes, we don’t need all the data—just a part of it. This step is
+like picking only the candies you like from a big box.
 
 ``` r
-# Fill this with other R related code that will be executed when the R markdown
-# file is rendered using knitR
+evaluation_per_group_per_gender <- student_performance_dataset %>% # nolint
+  mutate(`Student's Gender` =
+           ifelse(gender == 1, "Male", "Female")) %>%
+  select(class_group, gender,
+         `Student's Gender`, `Average Course Evaluation Rating`) %>%
+  filter(!is.na(`Average Course Evaluation Rating`)) %>%
+  group_by(class_group, `Student's Gender`) %>%
+  summarise(average_evaluation_rating =
+              mean(`Average Course Evaluation Rating`)) %>%
+  arrange(desc(average_evaluation_rating), .by_group = TRUE)
+```
+
+    ## `summarise()` has grouped output by 'class_group'. You can override using the
+    ## `.groups` argument.
+
+``` r
+# Plain tabular output
+View(evaluation_per_group_per_gender)
+
+# Decorated tabular output
+evaluation_per_group_per_gender %>%
+  rename(`Class Group` = class_group) %>%
+  rename(`Average Course Evaluation Rating` = average_evaluation_rating) %>%
+  select(`Class Group`, `Student's Gender`,
+         `Average Course Evaluation Rating`) %>%
+  mutate(`Average Course Evaluation Rating` =
+           color_tile("#B9BCC2", "#536CB5")
+           (`Average Course Evaluation Rating`)) %>%
+  kable("html", escape = FALSE, align = "c",
+        caption = "Course Evaluation Rating per Group and per Gender") %>%
+  kable_styling(bootstrap_options =
+                  c("striped", "condensed", "bordered"),
+                full_width = FALSE)
+```
+
+<table class="table table-striped table-condensed table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Course Evaluation Rating per Group and per Gender
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Class Group
+</th>
+<th style="text-align:center;">
+Student’s Gender
+</th>
+<th style="text-align:center;">
+Average Course Evaluation Rating
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+Female
+</td>
+<td style="text-align:center;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #536cb5">4.618190</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+Male
+</td>
+<td style="text-align:center;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b9bcc2">4.573423</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+Female
+</td>
+<td style="text-align:center;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #536cb5">4.573431</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+Male
+</td>
+<td style="text-align:center;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b9bcc2">4.569174</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+Female
+</td>
+<td style="text-align:center;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #536cb5">4.636370</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+Male
+</td>
+<td style="text-align:center;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b9bcc2">4.294362</span>
+</td>
+</tr>
+</tbody>
+</table>
+
+``` r
+# Decorated visual bar chart
+evaluation_per_group_per_gender %>%
+  ggplot() +
+  geom_bar(aes(x = class_group, y = average_evaluation_rating,
+               fill = `Student's Gender`),
+           stat = "identity", position = "dodge") +
+  expand_limits(y = 0) +
+  blue_grey_theme() +
+  scale_fill_manual(values = blue_grey_colours_2) +
+  ggtitle("Course Evaluation Rating per Group and per Gender") +
+  labs(x = "Class Group", y = "Average Rating")
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Fourth%20Code%20Chunk-1.png)<!-- -->
+
+``` r
 library(readr)
 ```
 
-# \<You can Provide Another Appropriate Title Here\>
+# Step 5: Data Cleansing for Qualitative Data:
 
-Describe the code chunk here:
+This step involves cleaning up text data, which might involve removing
+unnecessary spaces, converting text to lowercase, or handling missing
+values.
 
 ``` r
-# Fill this with R related code that will be executed when the R markdown file
-# is rendered using knitR
-library(readr)
+## Contractions ----
+
+# Contractions in the English language are shortened forms of words or phrases
+# created by combining two words and replacing one or more letters with an
+# apostrophe ('), often for the purpose of making speech or writing more
+# concise and informal. Contractions are often used in informal speech and
+# writing but are generally avoided in formal writing, such as academic papers
+# or business reports.
+
+# A function to expand contractions in an English-language source (assuming
+# that the students did not respond in sheng or Kiswahili).
+expand_contractions <- function(doc) {
+  doc <- gsub("I'm", "I am", doc, ignore.case = TRUE)
+  doc <- gsub("you're", "you are", doc, ignore.case = TRUE)
+  doc <- gsub("he's", "he is", doc, ignore.case = TRUE)
+  doc <- gsub("she's", "she is", doc, ignore.case = TRUE)
+  doc <- gsub("it's", "it is", doc, ignore.case = TRUE)
+  doc <- gsub("we're", "we are", doc, ignore.case = TRUE)
+  doc <- gsub("they're", "they are", doc, ignore.case = TRUE)
+  doc <- gsub("I'll", "I will", doc, ignore.case = TRUE)
+  doc <- gsub("you'll", "you will", doc, ignore.case = TRUE)
+  doc <- gsub("he'll", "he will", doc, ignore.case = TRUE)
+  doc <- gsub("she'll", "she will", doc, ignore.case = TRUE)
+  doc <- gsub("it'll", "it will", doc, ignore.case = TRUE)
+  doc <- gsub("we'll", "we will", doc, ignore.case = TRUE)
+  doc <- gsub("they'll", "they will", doc, ignore.case = TRUE)
+  doc <- gsub("won't", "will not", doc, ignore.case = TRUE)
+  doc <- gsub("can't", "cannot", doc, ignore.case = TRUE)
+  doc <- gsub("n't", " not", doc, ignore.case = TRUE)
+  return(doc)
+}
+
+# Evaluation likes and wishes
+evaluation_likes_and_wishes <- student_performance_dataset %>%
+  mutate(`Student's Gender` =
+           ifelse(gender == 1, "Male", "Female")) %>%
+  rename(`Class Group` = class_group) %>%
+  rename(Likes = `D - 1. \nWrite two things you like about the teaching and learning in this unit so far.`) %>% # nolint
+  rename(Wishes = `D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)`) %>% # nolint
+  select(`Class Group`,
+         `Student's Gender`, `Average Course Evaluation Rating`,
+         Likes, Wishes) %>%
+  filter(!is.na(`Average Course Evaluation Rating`)) %>%
+  arrange(`Class Group`)
+
+# Before expanding contractions (See row number 4)
+View(evaluation_likes_and_wishes)
+
+evaluation_likes_and_wishes$Likes <- sapply(evaluation_likes_and_wishes$Likes, expand_contractions) # nolint
+evaluation_likes_and_wishes$Wishes <- sapply(evaluation_likes_and_wishes$Wishes, expand_contractions) # nolint
+
+# After expanding contractions
+View(evaluation_likes_and_wishes)
+
+## Special Characters and Lower Case ----
+# NOTE: The special characters should be removed *after* expanding the
+# contractions
+
+# A function to remove special characters
+# Remember the use of regular expressions in the
+# BBT3104: Advanced Database Systems course
+
+# A tutorial on regular expressions: https://regexone.com/
+# To test your regular expression: https://regexr.com/
+
+remove_special_characters <- function(doc) {
+  gsub("[^a-zA-Z0-9 ]", "", doc, ignore.case = TRUE)
+}
+
+# Before removing special characters (See row number 11)
+View(evaluation_likes_and_wishes)
+
+evaluation_likes_and_wishes$Likes <- sapply(evaluation_likes_and_wishes$Likes, remove_special_characters) # nolint
+evaluation_likes_and_wishes$Wishes <- sapply(evaluation_likes_and_wishes$Wishes, remove_special_characters) # nolint
+
+# Convert everything to lower case (to standardize the text)
+evaluation_likes_and_wishes$Likes <- sapply(evaluation_likes_and_wishes$Likes, tolower) # nolint
+evaluation_likes_and_wishes$Wishes <- sapply(evaluation_likes_and_wishes$Wishes, tolower) # nolint
+
+# After removing special characters and converting everything to lower case
+View(evaluation_likes_and_wishes)
+
+# [OPTIONAL] You can save the file as a CSV at this point
+write.csv(evaluation_likes_and_wishes,
+          file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_likes_and_wishes.csv",
+          row.names = FALSE)
+
+# Additional examples can be seen here:
+head(sample(stop_words$word, 20), 20)
 ```
 
-**etc.** as per the lab submission requirements.
+    ##  [1] "w"         "go"        "cannot"    "com"       "does"      "becomes"  
+    ##  [7] "but"       "out"       "rooms"     "went"      "who"       "many"     
+    ## [13] "whether"   "therefore" "keep"      "what's"    "wherever"  "thence"   
+    ## [19] "you"       "needs"
+
+``` r
+# You can also create a list of words that you would like to censor
+undesirable_words <- c("wow", "lol", "none", "na")
+
+evaluation_likes_filtered <- evaluation_likes_and_wishes %>% # nolint
+  # We start by tokenization (unnesting words). This is from the variable
+  # "Like" into the variable "word".
+  unnest_tokens(word, Likes) %>%
+  # Then we remove stopwords using an anti-join (remember this from the
+  # BBT3104: Advanced Database Systems course)
+  # Anti-join: do not join where the word is in the list of stopwords
+  anti_join(stop_words, by = c("word")) %>%
+  distinct() %>%
+  # Censor or filter out unwanted words
+  filter(!word %in% undesirable_words) %>%
+  # Include only words that are more than 3 characters long (assuming that
+  # these are the words that are meaningful)
+  filter(nchar(word) > 3) %>%
+  # We then rename the variable "word" for ease of use.
+  rename(`Likes (tokenized)` = word) %>%
+  # We focus only on the likes in this data frame
+  select(-Wishes)
+
+# Lastly, we save the created data frame as a CSV file:
+write.csv(evaluation_likes_filtered,
+          file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_likes_filtered.csv",
+          row.names = FALSE)
+
+# The same is done to create a data frame for the "wishes" only
+evaluation_wishes_filtered <- evaluation_likes_and_wishes %>% # nolint
+  unnest_tokens(word, Wishes) %>%
+  anti_join(stop_words, by = c("word")) %>%
+  distinct() %>%
+  filter(!word %in% undesirable_words) %>%
+  filter(nchar(word) > 3) %>%
+  rename(`Wishes (tokenized)` = word) %>%
+  select(-Likes)
+
+write.csv(evaluation_wishes_filtered,
+          file = "/home/ki3ani/BBT4206-R-Lab2b-of15-EDAForQualitativeData-lumin/markdown/evaluation_wishes_filtered.csv",
+          row.names = FALSE)
+
+library(readr)
+```

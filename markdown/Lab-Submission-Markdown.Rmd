@@ -3,13 +3,13 @@ title: "Business Intelligence Lab Submission Markdown"
 author: "Lumin"
 date: "1/10/23"
 output:
-  html_document:
+  github_document:
     toc: yes
     toc_depth: 4
     fig_width: 6
     fig_height: 4
     df_print: default
-  always_allow_html: true
+always_allow_html: true
 editor_options:
   chunk_output_type: console
 ---
