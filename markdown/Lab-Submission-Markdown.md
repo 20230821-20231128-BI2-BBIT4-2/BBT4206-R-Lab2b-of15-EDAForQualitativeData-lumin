@@ -22,14 +22,50 @@ Lumin
 
 # Student Details
 
-|                                                   |                                                                                                                                                                                                                                                                               |     |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
-| **Student ID Numbers and Names of Group Members** | *\<list one student name, group, and ID per line; you should be between 2 and 5 members per group\>* \| \| 1. 112827 - A - Mungai Kenneth \| \| 2. 134265 - A - Emmanuel Kiptoo \| \| 3. 123324 - B - Kelly Noella Sota \| 4. ID - Group - Name \| \| 5. ID - Group - Name \| |     |
-| **GitHub Classroom Group Name**                   | Lumin \|                                                                                                                                                                                                                                                                      |     |
-| **Course Code**                                   | BBT4206                                                                                                                                                                                                                                                                       |     |
-| **Course Name**                                   | Business Intelligence II                                                                                                                                                                                                                                                      |     |
-| **Program**                                       | Bachelor of Business Information Technology                                                                                                                                                                                                                                   |     |
-| **Semester Duration**                             | 21<sup>st</sup> August 2023 to 28<sup>th</sup> November 2023                                                                                                                                                                                                                  |     |
+<table style="width:99%;">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 63%" />
+<col style="width: 3%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Student ID Numbers and Names of Group Members</strong></td>
+<td colspan="2"><pre><code>                                                                                                 |</code></pre>
+<ol type="1">
+<li>112827 - A - Mungai Kenneth | |</li>
+<li>134265 - A - Emmanuel Kiptoo | |</li>
+<li>123324 - B - Kelly Noella Sota | |</li>
+<li>ID - Group - Name | |</li>
+<li>ID - Group - Name |</li>
+</ol></td>
+</tr>
+<tr class="even">
+<td><strong>GitHub Classroom Group Name</strong></td>
+<td colspan="2">Lumin</td>
+</tr>
+<tr class="odd">
+<td><strong>Course Code</strong></td>
+<td>BBT4206</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Course Name</strong></td>
+<td>Business Intelligence II</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Program</strong></td>
+<td>Bachelor of Business Information Technology</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Semester Duration</strong></td>
+<td>21<sup>st</sup> August 2023 to 28<sup>th</sup> November 2023</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 # Setup Chunk
 
@@ -1242,10 +1278,10 @@ write.csv(evaluation_likes_and_wishes,
 head(sample(stop_words$word, 20), 20)
 ```
 
-    ##  [1] "aren't"     "plus"       "nearly"     "thru"       "pointed"   
-    ##  [6] "seen"       "yours"      "we're"      "ain't"      "unlikely"  
-    ## [11] "now"        "perhaps"    "now"        "clear"      "really"    
-    ## [16] "useful"     "several"    "know"       "whereafter" "clearly"
+    ##  [1] "high"      "must"      "was"       "were"      "nothing"   "behind"   
+    ##  [7] "wonder"    "above"     "she'd"     "hence"     "important" "this"     
+    ## [13] "y"         "him"       "of"        "ain't"     "say"       "wouldn't" 
+    ## [19] "myself"    "perhaps"
 
 ``` r
 # You can also create a list of words that you would like to censor

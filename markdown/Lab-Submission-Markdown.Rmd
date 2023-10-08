@@ -18,13 +18,13 @@ editor_options:
 # Student Details
 
 +---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Student ID Numbers and Names of Group Members** | *\<list one student name, group, and ID per line; you should be between 2 and 5 members per group\>* |
+| **Student ID Numbers and Names of Group Members** | 
 |                                                   |                                                                                                      |
-|                                                   | 1.  112827 - A - Mungai Kenneth                                                                                |
+|                                                   | 1.  112827 - A - Mungai Kenneth                                                                      |
 |                                                   |                                                                                                      |
-|                                                   | 2.  134265 - A - Emmanuel Kiptoo                                                                            |
+|                                                   | 2.  134265 - A - Emmanuel Kiptoo                                                                     |
 |                                                   |                                                                                                      |
-|                                                   | 3.  123324 - B - Kelly Noella Sota                                                                                |
+|                                                   | 3.  123324 - B - Kelly Noella Sota                                                                   |
 |                                                   |                                                                                                      |
 |                                                   | 4.  ID - Group - Name                                                                                |
 |                                                   |                                                                                                      |
